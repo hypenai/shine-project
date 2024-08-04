@@ -1,15 +1,22 @@
 #!/bin/bash
 
-# Build project
-echo "Building project..."
-# Add build commands here (e.g., npm run build, python setup.py build)
+# Pull latest changes from remote repository
+echo "Pulling latest changes..."
+git pull origin master --allow-unrelated-histories
 
-# Test project
-echo "Testing project..."
-# Add test commands here (e.g., npm run test, python -m unittest)
+# Resolve merge conflicts (if any)
+echo "Resolving merge conflicts..."
+git merge origin/master --allow-unrelated-histories
 
-# Deploy project
-echo "Deploying project..."
-# Add deploy commands here (e.g., npm run deploy, rsync -avz . user@host:/path/to/deploy)
+# Add and commit resolved changes
+echo "Committing changes..."
+git add .
+git commit -m "Resolved merge conflicts"
 
-echo "Deployment complete!"
+# Push changes to remote repository
+echo "Pushing changes..."
+git push origin master
+
+# Run Flask application
+echo "Running Flask application..."
+flask run
