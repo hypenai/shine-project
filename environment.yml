@@ -1,0 +1,7 @@
+name: shine-env
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - pandas
+  - flask
