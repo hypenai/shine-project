@@ -1,0 +1,29 @@
+stages:
+  - setup
+  - test
+  - deploy
+
+setup:
+  stage: setup
+  script:
+    - python -m venv venv
+    - source venv/Scripts/activate
+    - pip install -r requirements.txt
+    - flask db upgrade
+  artifacts:
+    paths:
+      - venv/
+
+test:
+  stage: test
+  script:
+    - source venv/Scripts/activate
+    - pytest
+
+deploy:
+  stage: deploy
+  script:
+    - source venv/Scripts/activate
+    - ./deploy.sh
+  only:
+    - main
